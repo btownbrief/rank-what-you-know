@@ -1,0 +1,235 @@
+{
+  "categories": [
+    {
+      "month": "2026-07",
+      "title": "Creemee Stands",
+      "emoji": "🍦",
+      "prompt": "Check off every creemee stand you've actually licked a cone at, then rank 'em.",
+      "items": [
+        { "name": "Little Gordo Creemee Stand", "where": "Old North End, Burlington", "note": "Horchata and ube creemees, open year-round" },
+        { "name": "Champ's Creemee Stand", "where": "Waterfront, Burlington", "note": "Run by ECHO — every cone funds the science center" },
+        { "name": "Burlington Bay Market & Café", "where": "Waterfront, Burlington", "note": "The sunset-on-the-lake classic; maple-vanilla twist" },
+        { "name": "Al's French Frys", "where": "South Burlington", "note": "Creemees and fries since 1946" },
+        { "name": "Off Beat Creemee", "where": "Winooski", "note": "Dairy-free creemees that convert skeptics" },
+        { "name": "The Village Scoop", "where": "Colchester", "note": "The neighborhood stand Colchester lines up at" },
+        { "name": "Scout", "where": "Winooski / Burlington", "note": "Craft ice cream and creemees from the café folks" },
+        { "name": "Shy Guy Gelato", "where": "St. Paul St, Burlington", "note": "Technically gelato soft-serve — fight about it" },
+        { "name": "Mr Creemee", "where": "Burlington area", "note": "It's right there in the name" },
+        { "name": "Palmer's Sugarhouse", "where": "Shelburne", "note": "Maple creemee made by actual sugarmakers" },
+        { "name": "Seb's Snack Bar", "where": "South Hero", "note": "Roadside stand worth the drive up the Islands" },
+        { "name": "Vermont Cookie Love", "where": "North Ferrisburgh", "note": "Creemee + fresh-baked cookie = the Love Wich" }
+      ]
+    },
+    {
+      "month": "2026-08",
+      "title": "Swimming Holes & Beaches",
+      "emoji": "🏊",
+      "prompt": "Only count the ones you've actually gotten wet at.",
+      "items": [
+        { "name": "North Beach", "where": "Burlington", "note": "The big sandy one, bike-path accessible" },
+        { "name": "Leddy Beach", "where": "New North End, Burlington", "note": "Quieter, dog-friendlier, locals' pick" },
+        { "name": "Oakledge Park", "where": "South End, Burlington", "note": "Rocky coves and the cold plunge crowd" },
+        { "name": "Texaco Beach", "where": "North Ave, Burlington", "note": "The 'secret' beach everyone knows about" },
+        { "name": "Red Rocks Park", "where": "South Burlington", "note": "Cliffs, pines, and that jump you swear you'll do" },
+        { "name": "Shelburne Town Beach", "where": "Shelburne", "note": "Mellow water, Adirondack views" },
+        { "name": "Lake Iroquois", "where": "Williston / Hinesburg", "note": "Warm water, real swim beach energy" },
+        { "name": "Bolton Potholes", "where": "Bolton", "note": "Cascading pools — respect the current" },
+        { "name": "Bartlett Falls", "where": "Bristol", "note": "The New Haven River stunner, worth the drive" },
+        { "name": "Sand Bar State Park", "where": "Milton", "note": "Shallow forever — the family favorite" },
+        { "name": "Waterbury Center State Park", "where": "Waterbury Center", "note": "Reservoir swimming with mountain views" },
+        { "name": "Salmon Hole", "where": "Burlington / Winooski line", "note": "The Winooski River's moody swimming spot" }
+      ]
+    },
+    {
+      "month": "2026-09",
+      "title": "Bike Rides",
+      "emoji": "🚲",
+      "prompt": "Rank only the rides your legs have actually done.",
+      "items": [
+        { "name": "The Colchester Causeway", "where": "Colchester", "note": "Riding across the middle of Lake Champlain" },
+        { "name": "Burlington Greenway", "where": "Burlington waterfront", "note": "Oakledge to the Winooski River, 8 easy miles" },
+        { "name": "South Hero via the Bike Ferry", "where": "Champlain Islands", "note": "Causeway + ferry gap + island roads" },
+        { "name": "The Intervale loop", "where": "Burlington", "note": "Gravel farm roads five minutes from downtown" },
+        { "name": "Winooski riverwalk loop", "where": "Burlington–Winooski", "note": "Two downtowns, one river, one bridge" },
+        { "name": "South Burlington Rec Path", "where": "South Burlington", "note": "The suburban cruiser network" },
+        { "name": "Ti-Haul Trail & Shelburne Bay Path", "where": "Shelburne", "note": "Flat, wooded, ends at the bay" },
+        { "name": "Mount Philo road climb", "where": "Charlotte", "note": "Short, steep, and the payoff view" },
+        { "name": "Spear Street", "where": "S. Burlington–Charlotte", "note": "The classic roadie run with panorama views" },
+        { "name": "Sunny Hollow", "where": "Colchester", "note": "Sandy, swoopy mountain bike trails" },
+        { "name": "Saxon Hill", "where": "Essex", "note": "Tight and twisty singletrack in the pines" },
+        { "name": "Catamount Outdoor Family Center", "where": "Williston", "note": "Trail network with something for everyone" }
+      ]
+    },
+    {
+      "month": "2026-10",
+      "title": "Hikes Under 40 Minutes Away",
+      "emoji": "🥾",
+      "prompt": "Summit claims only — check what you've hiked, then rank.",
+      "items": [
+        { "name": "Mount Philo", "where": "Charlotte", "note": "The 20-minute hike with the million-dollar view" },
+        { "name": "Rock Point", "where": "Burlington", "note": "Lakeside cliffs hiding behind North Beach" },
+        { "name": "Red Rocks Park", "where": "South Burlington", "note": "Pine forest walk to clifftop lake views" },
+        { "name": "Ethan Allen Homestead trails", "where": "Burlington", "note": "River loops in the Intervale" },
+        { "name": "Niquette Bay State Park", "where": "Colchester", "note": "Ledges, beaches, and barely any crowds" },
+        { "name": "Colchester Pond", "where": "Colchester", "note": "The full loop around the water" },
+        { "name": "Indian Brook Reservoir", "where": "Essex", "note": "Woodsy loop with a swim option" },
+        { "name": "Mills Riverside Park", "where": "Jericho", "note": "Meadow views of Mansfield" },
+        { "name": "Eagle Mountain", "where": "Milton", "note": "Quiet overlook of the Champlain islands" },
+        { "name": "Lone Tree Hill, Shelburne Farms", "where": "Shelburne", "note": "Pastoral perfection, lake on three sides" },
+        { "name": "Libby's Look", "where": "Bolton", "note": "Short climb, big Camel's Hump views" },
+        { "name": "Camel's Hump via Burrows Trail", "where": "Huntington", "note": "The real deal — worth stretching the drive" }
+      ]
+    },
+    {
+      "month": "2026-11",
+      "title": "Breakfast Spots",
+      "emoji": "🍳",
+      "prompt": "You have to have actually eaten breakfast there. Hungover counts double.",
+      "items": [
+        { "name": "August First", "where": "South Champlain St, Burlington", "note": "The bread alone justifies the line" },
+        { "name": "Handy's Lunch", "where": "Maple St, Burlington", "note": "Third-generation diner counter since 1945" },
+        { "name": "Sneakers Bistro", "where": "Winooski", "note": "The benedict institution since 1980" },
+        { "name": "The Friendly Toast", "where": "Bank St, Burlington", "note": "All-day breakfast, maximal menu" },
+        { "name": "The Skinny Pancake", "where": "Waterfront, Burlington", "note": "Crepes with a lake view" },
+        { "name": "The Grey Jay", "where": "Burlington", "note": "Cara Tobin's brunch — shakshuka and serious baked goods" },
+        { "name": "Mirabelles Bakery & Café", "where": "Burlington", "note": "Cardamom buns and proper breakfast sandwiches" },
+        { "name": "Parkway Diner", "where": "South Burlington", "note": "A real train-car diner, doing it right" },
+        { "name": "Chef's Corner Café", "where": "Williston / South Burlington", "note": "Bakery-café with breakfast range" },
+        { "name": "Scout", "where": "Winooski / Burlington", "note": "The breakfast sandwich dark horse" },
+        { "name": "Poppy Café & Market", "where": "North Ave, Burlington", "note": "New North End's morning headquarters" },
+        { "name": "Kountry Kart Deli", "where": "Main St, Burlington", "note": "The Shiner: breakfast sandwich of champions" }
+      ]
+    },
+    {
+      "month": "2026-12",
+      "title": "Coffee Shops",
+      "emoji": "☕",
+      "prompt": "Where do you actually get coffee? Check, rank, defend yourself.",
+      "items": [
+        { "name": "Muddy Waters", "where": "Main St, Burlington", "note": "The wood-cave institution, unchanged and perfect" },
+        { "name": "Uncommon Grounds", "where": "Church St, Burlington", "note": "The Church Street people-watching perch" },
+        { "name": "Speeder & Earl's", "where": "Pine St, Burlington", "note": "Roasting in the South End since 1993" },
+        { "name": "Brio Coffeeworks", "where": "Pine St, Burlington", "note": "The serious single-origin roastery" },
+        { "name": "Scout", "where": "Winooski / Burlington", "note": "Coffee, baked goods, and ice cream — triple threat" },
+        { "name": "Vivid Coffee Roasters", "where": "Winooski / Burlington", "note": "Bright roasts, stay-awhile seating" },
+        { "name": "Nomad Coffee", "where": "South End, Burlington / Essex", "note": "Espresso before the bike path" },
+        { "name": "Belleville Bakery", "where": "Burlington", "note": "Parisian pastries with your pour" },
+        { "name": "Kru Coffee", "where": "Church St & waterfront, Burlington", "note": "The newer kid holding its own" },
+        { "name": "Black Cap Coffee", "where": "Burlington", "note": "Stowe import with a city foothold" },
+        { "name": "August First", "where": "South Champlain St, Burlington", "note": "Bakery-café where laptops go to be judged" },
+        { "name": "Dobrá Tea", "where": "Church St, Burlington", "note": "Not coffee at all — the contrarian vote" }
+      ]
+    },
+    {
+      "month": "2027-01",
+      "title": "Sledding Hills",
+      "emoji": "🛷",
+      "prompt": "You must have gone down it on something. Trays count.",
+      "items": [
+        { "name": "Calahan Park", "where": "South End, Burlington", "note": "Pine & Locust — gentle slopes to send-it lines" },
+        { "name": "Burlington Country Club hill", "where": "Burlington", "note": "Steep, wide, and crawling with college kids" },
+        { "name": "Redstone Campus hill", "where": "UVM, Burlington", "note": "Dining-hall-tray certified" },
+        { "name": "Leddy Park", "where": "New North End, Burlington", "note": "The New North End's neighborhood run" },
+        { "name": "LaPlatte Nature Park", "where": "Shelburne", "note": "Gentle north hill, spicy south bowl" },
+        { "name": "Rocky Ridge Golf Club", "where": "St. George", "note": "Long, wide fairway runs" },
+        { "name": "Casey's Hill", "where": "Underhill", "note": "The one that goes on forever, Mansfield in view" },
+        { "name": "Sharp Park", "where": "Milton", "note": "A quarter-mile tube chute carved into the hillside" },
+        { "name": "Catamount Outdoor Family Center", "where": "Williston", "note": "Groomed winter playground" },
+        { "name": "Mills Riverside Park", "where": "Jericho", "note": "Big open hill, big Mansfield backdrop" }
+      ]
+    },
+    {
+      "month": "2027-02",
+      "title": "Pizza Joints",
+      "emoji": "🍕",
+      "prompt": "Check every spot you've eaten, then rank. Yes, drunk slices count.",
+      "items": [
+        { "name": "Pizzeria Ida", "where": "Riverside Ave, Burlington", "note": "The one people drive hours for" },
+        { "name": "American Flatbread Burlington Hearth", "where": "St. Paul St, Burlington", "note": "Wood-fired farm flatbread + Zero Gravity taps" },
+        { "name": "Pizzeria Verità", "where": "St. Paul St, Burlington", "note": "Blistered Neapolitan perfection" },
+        { "name": "Folino's", "where": "Burlington & Shelburne", "note": "Wood-fired, BYOB-spirited, always packed" },
+        { "name": "Leonardo's Pizza", "where": "Burlington", "note": "The delivery default for a generation" },
+        { "name": "Mr. Mikes Pizza", "where": "Main St, Burlington", "note": "Open till 2:30am — the true late-night slice" },
+        { "name": "Piesanos", "where": "Main St, Burlington", "note": "Artisan pies, formerly Junior's Downtown" },
+        { "name": "La di da Pizza", "where": "Burlington", "note": "The buzzy newer contender" },
+        { "name": "Stone's Throw Pizza", "where": "Richmond / Charlotte", "note": "Small-town pies that punch way up" },
+        { "name": "Pizza on Earth", "where": "Charlotte", "note": "Farm pizza nights — a summer ritual" }
+      ]
+    },
+    {
+      "month": "2027-03",
+      "title": "Maple Producers",
+      "emoji": "🍁",
+      "prompt": "Sugarhouses you've actually visited (or whose syrup is in your fridge).",
+      "items": [
+        { "name": "Palmer's Sugarhouse", "where": "Shelburne", "note": "Five generations of boiling since 1871" },
+        { "name": "Shelburne Sugarworks", "where": "Shelburne", "note": "Sugar-on-snow weekends in the woods" },
+        { "name": "Dakin Farm", "where": "Ferrisburgh", "note": "The Route 7 maple-everything empire" },
+        { "name": "Poor Farm Sugarhouse", "where": "Jericho", "note": "Wood-fired boiling you can watch" },
+        { "name": "Audubon Vermont Sugarhouse", "where": "Huntington", "note": "Bird-friendly syrup from the nature center" },
+        { "name": "Georgia Mountain Maples", "where": "Milton", "note": "Mountain-side operation up north" },
+        { "name": "Branon Family Maple Orchards", "where": "Fairfield", "note": "Organic syrup at serious scale" },
+        { "name": "Nebraska Knoll Sugar Farm", "where": "Stowe", "note": "The hollow hides a legend" },
+        { "name": "Bragg Farm Sugarhouse", "where": "East Montpelier", "note": "Old-school buckets and a maple creemee window" },
+        { "name": "Runamok Maple", "where": "Fairfax", "note": "The infused-syrup innovators" }
+      ]
+    },
+    {
+      "month": "2027-04",
+      "title": "Sandwich Counters",
+      "emoji": "🥪",
+      "prompt": "Rank only the sandwiches you've held with two hands.",
+      "items": [
+        { "name": "Kountry Kart Deli", "where": "Main St, Burlington", "note": "Home of the Shiner and the Wrapper" },
+        { "name": "Four Corners of the Earth", "where": "Pine St, Burlington", "note": "Iraqi turkey, Lebanese lamb — nothing else like it" },
+        { "name": "Yellow Mustard Deli", "where": "Burlington & Williston", "note": "Fresh subs on McKenzie meats" },
+        { "name": "Henry Street Deli", "where": "Henry St, Burlington", "note": "The hill-section corner store hero" },
+        { "name": "Poppy Café & Market", "where": "North Ave, Burlington", "note": "New North End sandwich sleeper" },
+        { "name": "Red Barn Market", "where": "South Burlington", "note": "Home of the Snackers" },
+        { "name": "City Market Deli", "where": "Downtown & South End, Burlington", "note": "The co-op counter everyone defaults to" },
+        { "name": "Myer's Bagels", "where": "Pine St, Burlington", "note": "Montreal-style wood-fired bagel sandwiches" },
+        { "name": "Great Harvest Bread Co.", "where": "South Burlington", "note": "Sandwiches on that bread" },
+        { "name": "Dave's Cosmic Subs", "where": "Church St area, Burlington", "note": "Rock-and-roll subs" },
+        { "name": "Beansie's Bus", "where": "Battery Park, Burlington", "note": "Michigan dogs off a 1944 school bus — it counts" }
+      ]
+    },
+    {
+      "month": "2027-05",
+      "title": "Burgers",
+      "emoji": "🍔",
+      "prompt": "Every burger you rank, you must have finished.",
+      "items": [
+        { "name": "The Farmhouse Tap & Grill", "where": "Bank St, Burlington", "note": "The Daysies-winning LaPlatte beef classic" },
+        { "name": "The Shopping Bag", "where": "North Ave, Burlington", "note": "Divey, cheap, and lowkey elite" },
+        { "name": "Al's French Frys", "where": "South Burlington", "note": "Griddle burgers since 1946" },
+        { "name": "Handy's Lunch", "where": "Maple St, Burlington", "note": "Diner-counter smash energy" },
+        { "name": "Vermont Pub & Brewery", "where": "College St, Burlington", "note": "Pub burger with a house pint" },
+        { "name": "Burlington Beer Company", "where": "Flynn Ave, Burlington", "note": "Taproom smash burgers that go" },
+        { "name": "Zero Gravity Brewery", "where": "Pine St, Burlington", "note": "Beer garden burger done right" },
+        { "name": "The Old Post", "where": "South Burlington", "note": "Sports-bar burger, sneaky good" },
+        { "name": "South End Sliders", "where": "South End, Burlington", "note": "Small burgers, big following" },
+        { "name": "Beansie's Bus", "where": "Battery Park, Burlington", "note": "The season-opener burger" }
+      ]
+    },
+    {
+      "month": "2027-06",
+      "title": "Bar Patios",
+      "emoji": "🍺",
+      "prompt": "You had to have had a drink there while outside. Rank the vibes.",
+      "items": [
+        { "name": "Foam Brewers", "where": "Waterfront, Burlington", "note": "Lake sunsets and hazy pours" },
+        { "name": "Zero Gravity Brewery", "where": "Pine St, Burlington", "note": "The South End beer garden standard" },
+        { "name": "The Farmhouse Tap & Grill", "where": "Bank St, Burlington", "note": "The hidden beer garden out back" },
+        { "name": "Splash at the Boathouse", "where": "Waterfront, Burlington", "note": "Drinks literally on the lake" },
+        { "name": "Waterworks Food + Drink", "where": "Winooski", "note": "Riverside deck over the falls" },
+        { "name": "Mule Bar", "where": "Winooski", "note": "The roundabout's best porch" },
+        { "name": "Four Quarters Brewing", "where": "Winooski", "note": "Funky beers, easy patio" },
+        { "name": "Ake's Place", "where": "Church St, Burlington", "note": "Patio right on the Marketplace bricks" },
+        { "name": "Sweetwaters", "where": "Church St, Burlington", "note": "Back from a 4-year hiatus — the OG sidewalk patio" },
+        { "name": "Vermont Pub & Brewery", "where": "College St, Burlington", "note": "The classic downtown beer patio" },
+        { "name": "Burlington Beer Company", "where": "Flynn Ave, Burlington", "note": "Big patio, bigger food menu" },
+        { "name": "Olde Northender Pub", "where": "Old North End, Burlington", "note": "The neighborhood backyard" }
+      ]
+    }
+  ]
+}

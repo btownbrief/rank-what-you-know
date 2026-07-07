@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="22" fill="#141a26"/>
+  <!-- podium -->
+  <rect x="12" y="52" width="24" height="30" rx="3" fill="#ff4d8d"/>
+  <rect x="38" y="38" width="24" height="44" rx="3" fill="#ffc531"/>
+  <rect x="64" y="60" width="24" height="22" rx="3" fill="#3ddc84"/>
+  <text x="50" y="62" font-family="Arial, sans-serif" font-size="20" font-weight="900" fill="#241a00" text-anchor="middle">1</text>
+  <text x="24" y="72" font-family="Arial, sans-serif" font-size="16" font-weight="900" fill="#3d0a1f" text-anchor="middle">2</text>
+  <text x="76" y="77" font-family="Arial, sans-serif" font-size="14" font-weight="900" fill="#06331c" text-anchor="middle">3</text>
+  <text x="50" y="26" font-family="Arial, sans-serif" font-size="15" font-weight="900" fill="#f2f4f8" text-anchor="middle" letter-spacing="1">RANK</text>
+</svg>
