@@ -97,7 +97,9 @@
         { "name": "Chef's Corner Café", "where": "Williston / South Burlington", "note": "Bakery-café with breakfast range" },
         { "name": "Scout", "where": "Winooski / Burlington", "note": "The breakfast sandwich dark horse" },
         { "name": "Poppy Café & Market", "where": "North Ave, Burlington", "note": "New North End's morning headquarters" },
-        { "name": "Kountry Kart Deli", "where": "Main St, Burlington", "note": "The Shiner: breakfast sandwich of champions" }
+        { "name": "Kountry Kart Deli", "where": "Main St, Burlington", "note": "The Shiner: breakfast sandwich of champions" },
+        { "name": "Henry's Diner", "where": "Bank St, Burlington", "note": "Booths and big plates downtown since 1925" },
+        { "name": "Pingala Café", "where": "Chace Mill & Pine St, Burlington", "note": "The plant-based brunch that wins over carnivores" }
       ]
     },
     {
@@ -117,6 +119,9 @@
         { "name": "Kru Coffee", "where": "Church St & waterfront, Burlington", "note": "The newer kid holding its own" },
         { "name": "Black Cap Coffee", "where": "Burlington", "note": "Stowe import with a city foothold" },
         { "name": "August First", "where": "South Champlain St, Burlington", "note": "Bakery-café where laptops go to be judged" },
+        { "name": "Onyx Tonics", "where": "Church St, Burlington", "note": "The coffee-tasting bar for people who say 'notes of'" },
+        { "name": "Kestrel Coffee Roasters", "where": "Maple St, Burlington & South Burlington", "note": "Small-batch roaster flying under the radar" },
+        { "name": "Radio Bean", "where": "N. Winooski Ave, Burlington", "note": "Coffeehouse by day, music den by night" },
         { "name": "Dobrá Tea", "where": "Church St, Burlington", "note": "Not coffee at all — the contrarian vote" }
       ]
     },
@@ -152,6 +157,8 @@
         { "name": "Mr. Mikes Pizza", "where": "Main St, Burlington", "note": "Open till 2:30am — the true late-night slice" },
         { "name": "Piesanos", "where": "Main St, Burlington", "note": "Artisan pies, formerly Junior's Downtown" },
         { "name": "La di da Pizza", "where": "Burlington", "note": "The buzzy newer contender" },
+        { "name": "Pizza 44", "where": "Queen City Park Rd, Burlington", "note": "Wood-fired pies parked at Queen City Brewery" },
+        { "name": "Ken's Pizza & Pub", "where": "Church St, Burlington", "note": "The downtown pub-slice mainstay for decades" },
         { "name": "Stone's Throw Pizza", "where": "Richmond / Charlotte", "note": "Small-town pies that punch way up" },
         { "name": "Pizza on Earth", "where": "Charlotte", "note": "Farm pizza nights — a summer ritual" }
       ]
@@ -189,7 +196,8 @@
         { "name": "City Market Deli", "where": "Downtown & South End, Burlington", "note": "The co-op counter everyone defaults to" },
         { "name": "Myer's Bagels", "where": "Pine St, Burlington", "note": "Montreal-style wood-fired bagel sandwiches" },
         { "name": "Great Harvest Bread Co.", "where": "South Burlington", "note": "Sandwiches on that bread" },
-        { "name": "Dave's Cosmic Subs", "where": "Church St area, Burlington", "note": "Rock-and-roll subs" },
+        { "name": "Dave's Cosmic Subs", "where": "Dorset St, South Burlington", "note": "Rock-and-roll subs (the Burlington shop closed)" },
+        { "name": "Top of the Block Sandwich Shoppe", "where": "Church St, Burlington", "note": "Exactly where the name says it is" },
         { "name": "Beansie's Bus", "where": "Battery Park, Burlington", "note": "Michigan dogs off a 1944 school bus — it counts" }
       ]
     },
@@ -208,6 +216,7 @@
         { "name": "Zero Gravity Brewery", "where": "Pine St, Burlington", "note": "Beer garden burger done right" },
         { "name": "The Old Post", "where": "South Burlington", "note": "Sports-bar burger, sneaky good" },
         { "name": "South End Sliders", "where": "South End, Burlington", "note": "Small burgers, big following" },
+        { "name": "Crispy Burger", "where": "N. Winooski Ave, Burlington", "note": "Fried-chicken burgers until 2am — the late-night wildcard" },
         { "name": "Beansie's Bus", "where": "Battery Park, Burlington", "note": "The season-opener burger" }
       ]
     },
@@ -228,6 +237,9 @@
         { "name": "Sweetwaters", "where": "Church St, Burlington", "note": "Back from a 4-year hiatus — the OG sidewalk patio" },
         { "name": "Vermont Pub & Brewery", "where": "College St, Burlington", "note": "The classic downtown beer patio" },
         { "name": "Burlington Beer Company", "where": "Flynn Ave, Burlington", "note": "Big patio, bigger food menu" },
+        { "name": "Red Square", "where": "Church St, Burlington", "note": "Live music spilling onto the bricks" },
+        { "name": "Citizen Cider", "where": "Pine St, Burlington", "note": "The cidery's South End hangout" },
+        { "name": "The Spot on the Dock", "where": "Perkins Pier, Burlington", "note": "Drinks with your feet basically in the lake" },
         { "name": "Olde Northender Pub", "where": "Old North End, Burlington", "note": "The neighborhood backyard" }
       ]
     }
