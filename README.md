@@ -33,4 +33,4 @@ RPC-only access). Player identity is the shared arcade identity
 - Past months render as frozen results pages with a
   "copy results as text" button for the newsletter
 
-A Btown Games production · [Read the Btown Brief →](https://www.btownbrief.com)
+A Btown Games production · [Read the BTown Brief →](https://www.btownbrief.com)
