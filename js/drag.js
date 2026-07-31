@@ -1,11 +1,10 @@
 // Touch-first drag-to-reorder list. Drag starts from the ≡ handle
 // (immediately with a mouse; after a short hold on touch so the page can
-// still scroll), siblings FLIP-animate out of the way, and drops buzz on
-// phones that support it. Every row also gets ▲▼ buttons as a no-drag
-// fallback.
+// still scroll), and siblings FLIP-animate out of the way. Every row also
+// gets ▲▼ buttons as a no-drag fallback.
 
 const HOLD_MS = 120; // touch hold before a drag begins
-const BUZZ = (ms) => { try { navigator.vibrate && navigator.vibrate(ms); } catch { /* unsupported */ } };
+const motionOK = () => !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // container's children are .rank-row elements, each containing a
 // .drag-handle. onReorder() fires after any order change.
@@ -29,7 +28,6 @@ export function makeSortable(container, onReorder) {
       drag.active = true;
       row.classList.add('dragging');
       container.classList.add('drag-live');
-      BUZZ(15);
     };
     if (e.pointerType === 'mouse') start();
     else drag.holdTimer = setTimeout(start, HOLD_MS);
@@ -58,10 +56,9 @@ export function makeSortable(container, onReorder) {
       container.insertBefore(row, others[target] || null);
       for (const r of others) {
         const d = before.get(r) - r.getBoundingClientRect().top;
-        if (d) r.animate([{ transform: `translateY(${d}px)` }, { transform: 'translateY(0)' }],
+        if (d && motionOK()) r.animate([{ transform: `translateY(${d}px)` }, { transform: 'translateY(0)' }],
           { duration: 180, easing: 'cubic-bezier(.2,.9,.3,1.15)' });
       }
-      BUZZ(8);
     }
     // glue the dragged row to the pointer regardless of DOM position
     const restingTop = row.getBoundingClientRect().top - getTranslate(row);
@@ -78,9 +75,8 @@ export function makeSortable(container, onReorder) {
     container.classList.remove('drag-live');
     const offset = getTranslate(row);
     row.style.transform = '';
-    if (offset) row.animate([{ transform: `translateY(${offset}px)` }, { transform: 'translateY(0)' }],
+    if (offset && motionOK()) row.animate([{ transform: `translateY(${offset}px)` }, { transform: 'translateY(0)' }],
       { duration: 160, easing: 'ease-out' });
-    BUZZ(20);
     onReorder();
   };
   container.addEventListener('pointerup', finish);
@@ -98,10 +94,9 @@ export function makeSortable(container, onReorder) {
     else container.insertBefore(sib, row);
     for (const r of container.children) {
       const d = before.get(r) - r.getBoundingClientRect().top;
-      if (d) r.animate([{ transform: `translateY(${d}px)` }, { transform: 'translateY(0)' }],
+      if (d && motionOK()) r.animate([{ transform: `translateY(${d}px)` }, { transform: 'translateY(0)' }],
         { duration: 200, easing: 'cubic-bezier(.2,.9,.3,1.15)' });
     }
-    BUZZ(10);
     onReorder();
   });
 }
