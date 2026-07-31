@@ -19,11 +19,22 @@ const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>
 
 const SITE_URL = 'https://btownbrief.github.io/rank-what-you-know/';
 const MIN_BALLOTS = 3;
+const LOCK_BEAT_MS = 520;
+const BAR_STAGGER_MS = 70;
+const BAR_GROW_MS = 700;
+const MATCH_COUNT_MS = 650;
 
 let CATS = [];           // all categories from data/categories.json
 let cat = null;          // category being viewed
 let checked = new Set(); // names checked on the checklist
 let order = [];          // current drag order (names)
+let submitting = false;
+let toastTimer = 0;
+let checkFlourishTimer = 0;
+let revealRunId = 0;
+let suppressedRevealRunId = -1;
+let revealFrame = 0;
+const revealTimers = new Set();
 
 // ---------- month helpers (?month=YYYY-MM overrides for testing) ----------
 
@@ -91,6 +102,9 @@ function renderMonthNav(nowKey) {
 // ---------- screens ----------
 
 function show(id) {
+  if (id !== '#screen-reveal') stopRevealEffects();
+  if (id !== '#screen-checklist') stopCheckFlourish();
+  hideToast();
   for (const s of document.querySelectorAll('.screen')) s.classList.add('hidden');
   $(id).classList.remove('hidden');
   window.scrollTo(0, 0);
@@ -115,11 +129,11 @@ function showChecklist() {
         <span class="check-note">${esc(item.note)}</span>
       </span>`;
     card.addEventListener('click', () => {
+      const previous = checked.size;
       if (checked.has(item.name)) checked.delete(item.name); else checked.add(item.name);
       card.classList.toggle('checked');
       card.querySelector('.check-box').textContent = checked.has(item.name) ? '✓' : '';
-      try { navigator.vibrate && navigator.vibrate(8); } catch { /* unsupported */ }
-      updateCheckCounter();
+      updateCheckCounter(previous);
     });
     grid.appendChild(card);
   }
@@ -134,12 +148,31 @@ function showChecklist() {
 }
 const idx = (arr, v) => { const i = arr.indexOf(v); return i === -1 ? 1e9 : i; };
 
-function updateCheckCounter() {
+function updateCheckCounter(previous = null) {
   const n = checked.size;
-  $('#check-counter').textContent = `You've tried ${n} of ${cat.items.length}`;
+  const total = cat.items.length;
+  const percent = total ? Math.round((n / total) * 100) : 0;
+  $('#check-counter').textContent = `You've tried ${n} of ${total}`;
+  const progress = $('#check-progress');
+  progress.setAttribute('aria-valuemax', total);
+  progress.setAttribute('aria-valuenow', n);
+  progress.setAttribute('aria-valuetext', `${n} of ${total} places tried`);
+  progress.classList.toggle('complete', n === total);
+  const fill = $('#check-progress-fill');
+  fill.classList.toggle('instant', previous === null);
+  fill.style.width = `${percent}%`;
+  if (previous === null) {
+    void fill.offsetWidth;
+    fill.classList.remove('instant');
+  }
   const btn = $('#to-rank');
   btn.disabled = n === 0;
   btn.textContent = n === 0 ? 'Check at least one' : `Rank your ${n} →`;
+
+  if (previous === null || n <= previous) return;
+  const halfway = Math.ceil(total / 2);
+  if (n === total) celebrateCheckMilestone('Every spot checked!', 24);
+  else if (previous < halfway && n >= halfway) celebrateCheckMilestone('Halfway through the list!', 16);
 }
 
 // 2 — RANK
@@ -189,24 +222,33 @@ function showName() {
 }
 
 async function doSubmit() {
-  const btn = $('#to-submit');
-  btn.disabled = true; btn.textContent = 'Submitting…';
+  if (submitting) return;
+  submitting = true;
+  setSubmittingUI(true);
+  const submittedMonth = cat.month;
+  const submittedOrder = [...order];
   try {
-    await submitBallot(cat.month, order);
-    localStorage.setItem(ballotKey(cat.month), JSON.stringify(order));
-    showReveal();
+    await submitBallot(submittedMonth, submittedOrder);
+    localStorage.setItem(ballotKey(submittedMonth), JSON.stringify(submittedOrder));
+    if (cat.month === submittedMonth) showReveal({ freshSubmit: true });
+    else showToast(`🔒 ${monthLabel(submittedMonth)} ballot locked`, 'locked', 1800);
   } catch (err) {
     console.error(err);
-    alert('Could not reach the ranking server — try again in a minute.');
+    showToast('Could not reach the ranking server — try again in a minute.', 'error', 2800);
   } finally {
-    btn.disabled = false; btn.textContent = 'Lock it in 🔒';
+    submitting = false;
+    setSubmittingUI(false);
   }
 }
 
 // 4 — REVEAL
-async function showReveal() {
+async function showReveal({ freshSubmit = false } = {}) {
+  const runId = beginRevealRun();
   show('#screen-reveal');
   $('#reveal-loading').classList.remove('hidden');
+  $('#reveal-loading').textContent = freshSubmit
+    ? '🔒 Ballot locked · Counting the ballots…'
+    : 'Counting the ballots…';
   $('#reveal-body').classList.add('hidden');
   let rows = [];
   let total = 0;
@@ -214,12 +256,18 @@ async function showReveal() {
     [rows, total] = await Promise.all([fetchRankings(cat.month), fetchBallotCount(cat.month)]);
   } catch (err) {
     console.error(err);
+    if (runId !== revealRunId) return;
     $('#reveal-loading').textContent = 'Could not load results — check back in a minute.';
     return;
   }
+  if (runId !== revealRunId) return;
   $('#reveal-loading').classList.add('hidden');
   $('#reveal-body').classList.remove('hidden');
 
+  const animateReveal = freshSubmit
+    && suppressedRevealRunId !== runId
+    && !document.hidden
+    && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const mine = savedBallot(cat.month) || [];
   const charted = rows.filter((r) => r.ballot_count >= MIN_BALLOTS);
   const pending = rows.filter((r) => r.ballot_count < MIN_BALLOTS);
@@ -235,7 +283,9 @@ async function showReveal() {
   }
   charted.forEach((r, i) => {
     const myRank = mine.indexOf(r.item);
-    const row = el('div', 'bar-row' + (myRank >= 0 ? ' mine' : ''));
+    const row = el('div', 'bar-row' + (myRank >= 0 ? ' mine' : '') + (animateReveal ? ' reveal' : ''));
+    const reverseDelay = (charted.length - 1 - i) * BAR_STAGGER_MS;
+    row.style.setProperty('--reveal-delay', `${LOCK_BEAT_MS + reverseDelay}ms`);
     row.innerHTML = `
       <div class="bar-top">
         <span class="bar-rank">${i + 1}</span>
@@ -243,7 +293,7 @@ async function showReveal() {
         ${myRank >= 0 ? `<span class="you-badge">you: #${myRank + 1}</span>` : ''}
         <span class="bar-score">${Math.round(r.score * 100)}</span>
       </div>
-      <div class="bar-track"><div class="bar-fill" style="--w:${Math.round(r.score * 100)}%; animation-delay:${i * 60}ms"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="--w:${Math.round(r.score * 100)}%"></div></div>
       <div class="bar-sub">${r.ballot_count} ballot${r.ballot_count === 1 ? '' : 's'}</div>`;
     wrap.appendChild(row);
   });
@@ -259,13 +309,25 @@ async function showReveal() {
 
   // % match with Burlington (Spearman on shared items, mapped to 0–100)
   const matchCard = $('#match-card');
+  const matchPct = $('#match-pct');
+  const matchLine = $('#match-line');
   const match = matchPercent(mine, charted.map((r) => r.item));
   if (match === null) {
     matchCard.classList.add('hidden');
+    delete matchCard.dataset.match;
+    delete matchCard.dataset.blurb;
   } else {
     matchCard.classList.remove('hidden');
-    $('#match-pct').textContent = `${match}%`;
-    $('#match-line').textContent = matchBlurb(match);
+    matchCard.dataset.match = match;
+    matchCard.dataset.blurb = matchBlurb(match);
+    matchLine.classList.remove('blurb-drop');
+    if (animateReveal) {
+      matchPct.textContent = '0%';
+      matchLine.textContent = '';
+      matchLine.classList.add('awaiting');
+    } else {
+      settleMatchCard(matchCard);
+    }
   }
 
   // your to-do list
@@ -316,7 +378,128 @@ async function showReveal() {
       ? `Next up: ${next.emoji} ${next.title} — in ${days}d ${hours}h`
       : `Next category drops in ${days}d ${hours}h`;
   } else cd.classList.add('hidden');
+
+  if (freshSubmit) showToast('🔒 Ballot locked', 'locked', 1000);
+  if (animateReveal && match !== null) {
+    const barsDoneAt = LOCK_BEAT_MS
+      + Math.max(0, charted.length - 1) * BAR_STAGGER_MS
+      + BAR_GROW_MS;
+    scheduleReveal(runId, barsDoneAt, () => {
+      countUpMatch(match, runId, () => {
+        matchLine.textContent = matchBlurb(match);
+        matchLine.classList.remove('awaiting');
+        matchLine.classList.add('blurb-drop');
+      });
+    });
+  }
 }
+
+function setSubmittingUI(active) {
+  const rankButton = $('#to-submit');
+  const nameButton = $('#name-go');
+  rankButton.disabled = active;
+  nameButton.disabled = active;
+  rankButton.textContent = active ? 'Submitting…' : 'Lock it in 🔒';
+  nameButton.textContent = active ? 'Submitting…' : 'Submit my ballot';
+}
+
+function celebrateCheckMilestone(message, vibrationMs) {
+  const progress = $('#check-progress');
+  clearTimeout(checkFlourishTimer);
+  progress.classList.remove('flourish');
+  void progress.offsetWidth;
+  progress.classList.add('flourish');
+  showToast(message, 'locked', 1400);
+  try { navigator.vibrate && navigator.vibrate(vibrationMs); } catch { /* unsupported */ }
+  checkFlourishTimer = setTimeout(() => progress.classList.remove('flourish'), 600);
+}
+
+function stopCheckFlourish() {
+  clearTimeout(checkFlourishTimer);
+  checkFlourishTimer = 0;
+  $('#check-progress').classList.remove('flourish');
+}
+
+function showToast(message, tone = '', duration = 1800) {
+  const toast = $('#toast');
+  clearTimeout(toastTimer);
+  toast.className = `toast${tone ? ` ${tone}` : ''}`;
+  toast.textContent = message;
+  void toast.offsetWidth;
+  toast.classList.add('show');
+  toastTimer = setTimeout(hideToast, duration);
+}
+
+function hideToast() {
+  clearTimeout(toastTimer);
+  toastTimer = 0;
+  $('#toast').classList.remove('show');
+}
+
+function beginRevealRun() {
+  clearRevealTiming();
+  return ++revealRunId;
+}
+
+function stopRevealEffects() {
+  clearRevealTiming();
+  revealRunId++;
+}
+
+function clearRevealTiming() {
+  if (revealFrame) cancelAnimationFrame(revealFrame);
+  revealFrame = 0;
+  for (const timer of revealTimers) clearTimeout(timer);
+  revealTimers.clear();
+}
+
+function scheduleReveal(runId, delay, fn) {
+  const timer = setTimeout(() => {
+    revealTimers.delete(timer);
+    if (runId !== revealRunId || $('#screen-reveal').classList.contains('hidden')) return;
+    fn();
+  }, delay);
+  revealTimers.add(timer);
+}
+
+function countUpMatch(target, runId, done) {
+  const start = performance.now();
+  const frame = (now) => {
+    if (runId !== revealRunId || document.hidden) return;
+    const elapsed = Math.min(1, (now - start) / MATCH_COUNT_MS);
+    const eased = 1 - Math.pow(1 - elapsed, 3);
+    $('#match-pct').textContent = `${Math.round(target * eased)}%`;
+    if (elapsed < 1) {
+      revealFrame = requestAnimationFrame(frame);
+    } else {
+      revealFrame = 0;
+      done();
+    }
+  };
+  revealFrame = requestAnimationFrame(frame);
+}
+
+function settleMatchCard(card) {
+  if (!card.dataset.match) return;
+  $('#match-pct').textContent = `${card.dataset.match}%`;
+  const line = $('#match-line');
+  line.textContent = card.dataset.blurb;
+  line.classList.remove('awaiting', 'blurb-drop');
+}
+
+function settleRevealPresentation() {
+  clearRevealTiming();
+  document.querySelectorAll('.bar-row.reveal').forEach((row) => row.classList.remove('reveal'));
+  settleMatchCard($('#match-card'));
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) return;
+  suppressedRevealRunId = revealRunId;
+  settleRevealPresentation();
+  stopCheckFlourish();
+  hideToast();
+});
 
 function flashBtn(sel, msg) {
   const b = $(sel);
