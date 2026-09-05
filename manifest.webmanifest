@@ -1,0 +1,22 @@
+{
+  "name": "Rank What You Know",
+  "short_name": "Rank What You Know",
+  "description": "Rank What You Know. A Btown Games production.",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#141a26",
+  "theme_color": "#141a26",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
